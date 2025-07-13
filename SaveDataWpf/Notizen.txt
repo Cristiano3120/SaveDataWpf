@@ -1,0 +1,9 @@
+﻿Ich will nen button wessen svg sich ändert, schloss offen wenn encrypted, schloss wenn unencrypted
+Mach ne checkbox links vom jeden item und eine ganz oben , die alle auswählt
+Mach dann ganz oben auch noch nen delete, encrypt und decrypt button
+Mach settings um z.B iterations anzupassen
+
+COPY ICON: https://www.svgrepo.com/vectors/copy/
+ENCRYPT ICON: https://de.pinterest.com/pin/1137792293348675777/
+DECRYPT ICON: https://de.pinterest.com/pin/717057571924512517/
+EDIT ICON: https://www.svgrepo.com/vectors/edit/
