@@ -11,4 +11,21 @@
     <PackageReference Include="SHA3.Net" Version="2.0.0" />
     <PackageReference Include="SharpVectors.Wpf" Version="1.8.4.2" />
   </ItemGroup>
+  <ItemGroup>
+    <None Update="Icons\Copy.svg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Icons\Decrypt.svg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Icons\Delete.svg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Icons\Edit.svg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Icons\Encrypt.svg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
 </Project>

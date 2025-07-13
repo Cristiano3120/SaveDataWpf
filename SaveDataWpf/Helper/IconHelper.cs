@@ -4,7 +4,7 @@ using System.Windows.Controls;
 using System.Windows.Media;
 
 
-namespace SaveDataWpf
+namespace SaveDataWpf.Helper
 {
     internal static class IconHelper
     {

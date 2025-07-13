@@ -1,6 +1,6 @@
 ﻿namespace SaveDataWpf
 {
-    internal record SavedContent
+    internal sealed record SavedContent
     {
         public string Content { get; init; } = default!;
         public bool IsEncrypted { get; init; } = default!;

@@ -5,7 +5,7 @@ using System.Windows.Media;
 
 namespace SaveDataWpf
 {
-    public partial class MainWindow : Window
+    public sealed partial class MainWindow : Window
     {
         private Dictionary<string, SavedContent> _savedData = ManageSavedData.LoadData();
 
@@ -32,9 +32,15 @@ namespace SaveDataWpf
             if (_savedData.Count == 0)
                 return;
 
-            FileSystemHelper.ResetFile();
-            _savedData.Clear();
-            LoadListBox();
+            const string question = "Are you sure that you wanna permanently delete all the notes?";
+            MessageBoxResult result = MessageBox.Show(question, "You sure?", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+
+            if (result == MessageBoxResult.Yes)
+            {
+                FileSystemHelper.ResetFile();
+                _savedData.Clear();
+                LoadListBox();
+            }
         }
 
         private void AddBtn_Click(object sender, RoutedEventArgs e)
@@ -50,24 +56,36 @@ namespace SaveDataWpf
             EncryptionWindow window = new(true, taskCompletionSource);
 
             string password = await taskCompletionSource.Task;
+            uint failedDecryptions = 0;
 
+            Cursor = Cursors.AppStarting;
             foreach (var pair in oldDict)
             {
                 if (pair.Value.IsEncrypted == encrypt)
                     continue;
 
-                Cursor = Cursors.AppStarting;
+                
                 string? encryptedContent = encrypt 
                     ? await CryptoHelper.EncryptAsync(pair.Value.Content, password)
-                    : await CryptoHelper.DecryptAsync(pair.Value.Content, password);
+                    : await CryptoHelper.DecryptAsync(pair.Value.Content, password, true);
+
+                if (encryptedContent == null)
+                {
+                    failedDecryptions++;
+                    continue;
+                }
 
                 Application.Current.Dispatcher.Invoke(() =>
                 {
                     KeyValuePair<string, SavedContent> newPair = new(pair.Key, new(encryptedContent!, encrypt));
                     ManageSavedData.UpdateData(pair, newPair);
                 });
+            }
 
-                Cursor = Cursors.Arrow;
+            Cursor = Cursors.Arrow;
+            if (failedDecryptions > 0)
+            {
+                MessageBox.Show($"{failedDecryptions} decryption(s) failed cause the password didn´t match", "Decryption error...", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
@@ -84,6 +102,12 @@ namespace SaveDataWpf
 
                 LoadedDataList.Items.Add(CreateListBoxItem(grid));
             }
+        }
+
+        internal void ReloadListBox(Dictionary<string, SavedContent> dictionary)
+        {
+            _savedData = dictionary;
+            LoadListBox();
         }
 
         private static Grid CreateGrid()
@@ -226,12 +250,6 @@ namespace SaveDataWpf
             };
 
             return item;
-        }
-
-        internal void ReloadListBox(Dictionary<string, SavedContent> dictionary)
-        {
-            _savedData = dictionary;
-            LoadListBox();
         }
     }
 }

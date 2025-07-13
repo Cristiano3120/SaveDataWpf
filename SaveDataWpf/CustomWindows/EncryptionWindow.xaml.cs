@@ -1,6 +1,6 @@
 ﻿using System.Windows;
 
-namespace SaveDataWpf
+namespace SaveDataWpf.CustomWindows
 {
     public partial class EncryptionWindow : Window
     {

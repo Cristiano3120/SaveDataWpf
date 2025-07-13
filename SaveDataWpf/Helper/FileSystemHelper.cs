@@ -2,7 +2,7 @@
 using System.Text;
 using System.Windows;
 
-namespace SaveDataWpf
+namespace SaveDataWpf.Helper
 {
     internal sealed class FileSystemHelper
     {

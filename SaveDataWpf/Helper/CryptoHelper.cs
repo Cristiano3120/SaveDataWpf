@@ -4,7 +4,7 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Windows;
 
-namespace SaveDataWpf
+namespace SaveDataWpf.Helper
 {
     internal sealed class CryptoHelper
     {
@@ -49,7 +49,7 @@ namespace SaveDataWpf
             return Convert.ToBase64String(ms.ToArray());
         }
 
-        public static async Task<string?> DecryptAsync(string cipherText, string password)
+        public static async Task<string?> DecryptAsync(string cipherText, string password, bool disableErrorMessage = false)
         {
             try
             {
@@ -69,7 +69,8 @@ namespace SaveDataWpf
             }
             catch (Exception)
             {
-                MessageBox.Show("Wrong password!", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                if (!disableErrorMessage)
+                    MessageBox.Show("Wrong password!", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 return null;
             }
         }

@@ -8,9 +8,7 @@ namespace SaveDataWpf
     internal sealed partial class GUIHelper
     {
         private const int WM_SYSCOMMAND = 0x112;
-        private const int SC_MAXIMIZE = 0xF030;
         private const int SC_MINIMIZE = 0xF020;
-        private const int SC_RESTORE = 0xF120;
         private const int SC_CLOSE = 0xF060;
 
         [LibraryImport("user32.dll", EntryPoint = "SendMessageW", StringMarshalling = StringMarshalling.Utf16)]
@@ -19,13 +17,7 @@ namespace SaveDataWpf
         public static void RegisterWindowButtons(Button minimizeButton, Button maximizeButton, Button closeButton)
         {
             minimizeButton.Click += MinimizeButton_Click;
-            maximizeButton.Click += MaximizeButton_Click;
             closeButton.Click += CloseButton_Click;
-        }
-
-        private static void MaximizeButton_Click(object sender, RoutedEventArgs e)
-        {
-
         }
 
         private static void MinimizeButton_Click(object sender, RoutedEventArgs e)

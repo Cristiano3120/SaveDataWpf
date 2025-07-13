@@ -1,6 +1,6 @@
 ﻿using System.Windows;
 
-namespace SaveDataWpf
+namespace SaveDataWpf.CustomWindows
 {
     /// <summary>
     /// Only needs to be instanciated. Closes when work is done.

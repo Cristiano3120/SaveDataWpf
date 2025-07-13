@@ -1,11 +1,10 @@
-﻿using System.IO;
-using System.Text.Json;
+﻿using System.Text.Json;
 using System.Text.Json.Nodes;
 using System.Windows;
 
 namespace SaveDataWpf
 {
-    internal class ManageSavedData
+    internal sealed class ManageSavedData
     {
         private static readonly JsonSerializerOptions _jsonSerializerOptions = new()
         {
