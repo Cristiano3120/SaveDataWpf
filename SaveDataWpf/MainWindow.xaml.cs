@@ -1,6 +1,7 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using System.Windows.Interop;
 using System.Windows.Media;
 
 namespace SaveDataWpf
@@ -19,6 +20,14 @@ namespace SaveDataWpf
             DecryptAllBtn.Click += DecryptAllBtn_Click;
             DeleteAllBtn.Click += DeleteAllBtn_Click;
             AddBtn.Click += AddBtn_Click;
+        }
+
+        protected override void OnSourceInitialized(EventArgs e)
+        {
+            if (PresentationSource.FromVisual(this) is HwndSource hwndSource)
+                hwndSource.CompositionTarget.RenderMode = RenderMode.SoftwareOnly;
+
+            base.OnSourceInitialized(e);
         }
 
         private void EncryptAllBtn_Click(object sender, RoutedEventArgs e)
