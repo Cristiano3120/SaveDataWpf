@@ -30,16 +30,16 @@
 	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
 	  </Compile>
 	  <Compile Update="Helper\CryptoHelper.cs">
-	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
 	  </Compile>
 	  <Compile Update="Helper\FileSystemHelper.cs">
-	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
 	  </Compile>
 	  <Compile Update="Helper\GUIHelper.cs">
-	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
 	  </Compile>
 	  <Compile Update="Helper\IconHelper.cs">
-	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
 	  </Compile>
 	  <Compile Update="MainWindow.xaml.cs">
 	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
