@@ -1,4 +1,4 @@
-﻿using SHA3.Net;
+﻿using Konscious.Security.Cryptography;
 using System.IO;
 using System.Security.Cryptography;
 using System.Text;
@@ -10,23 +10,26 @@ namespace SaveDataWpf.Helper
     {
         private static async Task<(byte[] key, byte[] iv)> GetKeyAndIVAsync(string password)
         {
-            return await Task.Run(() =>
+            return await Task.Run(async() =>
             {
-                const string saltPrefix = "aP.7QQ!?XnbGGk94";
-                byte[] salt = SHA256.HashData(Encoding.UTF8.GetBytes(password + saltPrefix));
+                byte[] salt = await FileSystemHelper.ReadSaltAsync();
 
-                Span<byte> passwordSalt = stackalloc byte[salt.Length + Encoding.UTF8.GetByteCount(password)];
-                salt.CopyTo(passwordSalt);
-                Encoding.UTF8.GetBytes(password, passwordSalt[salt.Length..]);
+                int gigabyte = 1000 * 1024; //1GB
+                Argon2id argon2 = new(Encoding.UTF8.GetBytes(password))
+                {
+                    MemorySize = gigabyte, 
+                    Iterations = 5,
+                    DegreeOfParallelism = 1,
+                    Salt = salt
+                };
 
-                const int iterations = 1_000_000;
-                byte[] hash = passwordSalt.ToArray();
-                for (int i = 0; i < iterations; i++)
-                    hash = Sha3.Sha3384().ComputeHash(hash);
+                byte[] derived = argon2.GetBytes(48);
 
                 byte[] key = new byte[32];
-                Buffer.BlockCopy(hash, 0, key, 0, 32);
-                byte[] iv = Sha3.Sha3256().ComputeHash(Encoding.UTF8.GetBytes(password + ":iv"))[..16];
+                byte[] iv = new byte[16];
+
+                Buffer.BlockCopy(derived, 0, key, 0, 32);
+                Buffer.BlockCopy(derived, 32, iv, 0, 16);
 
                 return (key, iv);
             });
