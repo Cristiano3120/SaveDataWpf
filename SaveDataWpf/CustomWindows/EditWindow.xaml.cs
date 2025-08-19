@@ -14,7 +14,7 @@ namespace SaveDataWpf.CustomWindows
         internal EditWindow()
         {
             InitializeComponent();
-            GUIHelper.RegisterWindowButtons(MinimizeBtn, MaximizeBtn, CloseBtn);
+            GUIHelper.SetBasicWindowUI(this, ParentGrid);
             Owner = Application.Current.MainWindow;
             Title = $"Adding";
 
@@ -25,7 +25,7 @@ namespace SaveDataWpf.CustomWindows
         internal EditWindow(KeyValuePair<string, SavedContent> pair)
         {
             InitializeComponent();
-            GUIHelper.RegisterWindowButtons(MinimizeBtn, MaximizeBtn, CloseBtn);
+            GUIHelper.SetBasicWindowUI(this, ParentGrid);
 
             if (pair.Value.IsEncrypted)
             {

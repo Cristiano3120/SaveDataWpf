@@ -9,7 +9,7 @@ namespace SaveDataWpf.CustomWindows
         internal EncryptionWindow(bool encrypting, TaskCompletionSource<string> enteredPasswordTcs)
         {
             InitializeComponent();
-            GUIHelper.RegisterWindowButtons(MinimizeBtn, MaximizeBtn, CloseBtn);
+            GUIHelper.SetBasicWindowUI(this, ParentGrid);
             Show();
 
             Owner = Application.Current.MainWindow;
@@ -25,7 +25,7 @@ namespace SaveDataWpf.CustomWindows
         internal EncryptionWindow(KeyValuePair<string, SavedContent> pair, TaskCompletionSource<string> enteredPasswordTcs)
         {
             InitializeComponent();
-            GUIHelper.RegisterWindowButtons(MinimizeBtn, MaximizeBtn, CloseBtn);
+            GUIHelper.SetBasicWindowUI(this, ParentGrid);
             Show();
 
             Owner = Application.Current.MainWindow;

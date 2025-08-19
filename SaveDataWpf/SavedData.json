@@ -1,3 +1,10 @@
 {
-
+  "Bitwarden (Encrypted with standard password)": {
+    "content": "o8C7BFqytGCKTPg1jmn8nSBKnI0LEA3iEKBx\u002BmvrdP7yCI87Aja5DRLf8WPFghzb",
+    "isEncrypted": true
+  },
+  "Bitwarden (Backup)": {
+    "content": "o8C7BFqytGCKTPg1jmn8nSBKnI0LEA3iEKBx\u002BmvrdP7yCI87Aja5DRLf8WPFghzb",
+    "isEncrypted": true
+  }
 }

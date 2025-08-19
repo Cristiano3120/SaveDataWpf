@@ -147,6 +147,5 @@ namespace SaveDataWpf.Helper
             string filepath = GetDynamicPath(_filename);
             return File.ReadAllText(filepath);
         }
-
     }
 }

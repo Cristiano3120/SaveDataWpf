@@ -8,32 +8,18 @@
         Height="225" Width="400" MinWidth="400" MinHeight="225" MaxWidth="400" MaxHeight="225"
             Background="#1f1e1f" WindowStyle="None" WindowStartupLocation="CenterScreen">
 
-    <WindowChrome.WindowChrome>
-        <WindowChrome CornerRadius="20" CaptionHeight="12" ResizeBorderThickness="3" UseAeroCaptionButtons="False" GlassFrameThickness="0"/>
-    </WindowChrome.WindowChrome>
-    
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
+    <Grid x:Name="ParentGrid">
+        <TextBlock FontSize="18" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" 
+                   Margin="0,0,185,150" Text="Name:"/>
 
-        <StackPanel VerticalAlignment="Top" HorizontalAlignment="Right" Orientation="Horizontal" Margin="0,0,0,0" Grid.Row="0" Grid.Column="1" Panel.ZIndex="1">
-            <Button x:Name="MinimizeBtn" Content="―"  BorderBrush="#1f1e1f" Height="30" Width="30" Margin="0, 0, 0, 0"/>
-            <Button x:Name="MaximizeBtn" Content="🗖"  BorderBrush="#1f1e1f" Height="30" Width="30" Margin="0, 0, 0, 0"/>
-            <Button x:Name="CloseBtn" Content="X"  BorderBrush="#1f1e1f" Height="30" Width="30" Margin="0, 0, 0, 0"/>
-        </StackPanel>
+        <TextBox x:Name="NameTextBox" Height="30" Width="240" 
+                  Margin="0,0,0,90" FontSize="16"/>
 
-        <TextBlock FontSize="18" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,185,150">
-    Name:
-        </TextBlock>
-        <TextBox x:Name="NameTextBox" Foreground="White" Grid.Row="1" Height="30" Width="240" Background="Transparent" Margin="0,0,0,90" FontSize="16"/>
+        <TextBlock FontSize="18" HorizontalAlignment="Center" VerticalAlignment="Center" 
+                   Margin="0,0,170,0" Text="Content:"/>
 
-        <TextBlock FontSize="18" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,170,0">
-    Content:
-        </TextBlock>
-        <TextBox x:Name="ContentTextBox" Foreground="White" Grid.Row="1" Height="30" Width="240" Background="Transparent" Margin="0,60,0,0" FontSize="16"/>
+        <TextBox x:Name="ContentTextBox" Height="30" Width="240" Margin="0,60,0,0" FontSize="16"/>
 
-        <Button x:Name="SaveBtn" Content="Save" Grid.Row="1" Height="30" Width="100" Background="#222" FontSize="16" Margin="0,140,0,0" HorizontalAlignment="Center"/>
+        <Button x:Name="SaveBtn" Style="{StaticResource BorderBtn}" Content="Save" Height="30" Width="100" Background="#222" FontSize="16" Margin="0,140,0,0" HorizontalAlignment="Center"/>
     </Grid>
 </Window>

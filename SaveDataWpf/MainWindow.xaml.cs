@@ -13,13 +13,68 @@ namespace SaveDataWpf
         public MainWindow()
         {
             InitializeComponent();
-            GUIHelper.RegisterWindowButtons(MinimizeBtn, MaximizeBtn, CloseBtn);
+            GUIHelper.SetBasicWindowUI(this, ParentGrid);
             LoadListBox();
+        }
 
-            EncryptAllBtn.Click += EncryptAllBtn_Click;
-            DecryptAllBtn.Click += DecryptAllBtn_Click;
-            DeleteAllBtn.Click += DeleteAllBtn_Click;
-            AddBtn.Click += AddBtn_Click;
+        public void CreateBtns()
+        {
+            StackPanel stackPanel = new()
+            {
+                Background = Brushes.Transparent,
+                Height = 30,
+                Orientation = Orientation.Horizontal,
+                HorizontalAlignment = HorizontalAlignment.Left,
+                VerticalAlignment = VerticalAlignment.Top,
+            };
+
+            Button encryptAllBtn = new()
+            {
+                Style = (Style)Application.Current.FindResource("LeftBtn"),
+                Name = "EncryptAllBtn",
+                Height = 30,
+                Width = 85,
+                HorizontalAlignment = HorizontalAlignment.Left,
+                Content = "Encrypt all"
+            };
+            encryptAllBtn.Click += EncryptAllBtn_Click;
+
+            Button decryptAllBtn = new()
+            {
+                Style = (Style)Application.Current.FindResource("MidBtn"),
+                Name = "DecryptAllBtn",
+                Height = 30,
+                Width = 85,
+                Content = "Decrypt all"
+            };
+            decryptAllBtn.Click += DecryptAllBtn_Click;
+
+            Button deleteAllBtn = new()
+            {
+                Style = (Style)Application.Current.FindResource("MidBtn"),
+                Name = "DeleteAllBtn",
+                Height = 30,
+                Width = 75,
+                Content = "Delete all"
+            };
+            deleteAllBtn.Click += DeleteAllBtn_Click;
+
+            Button addBtn = new()
+            {
+                Style = (Style)Application.Current.FindResource("MidBtn"),
+                Name = "AddBtn",
+                Height = 30,
+                Width = 45,
+                Content = "Add"
+            };
+            addBtn.Click += AddBtn_Click;
+
+            stackPanel.Children.Add(encryptAllBtn);
+            stackPanel.Children.Add(decryptAllBtn);
+            stackPanel.Children.Add(deleteAllBtn);
+            stackPanel.Children.Add(addBtn);
+
+            ParentGrid.Children.Add(stackPanel);
         }
 
         protected override void OnSourceInitialized(EventArgs e)
@@ -160,6 +215,7 @@ namespace SaveDataWpf
 
         private void CreateBtns(Grid grid, KeyValuePair<string, SavedContent> pair)
         {
+            Style style = (Style)Application.Current.FindResource("NoHoverBlueBtn");
             StackPanel buttonPanel = new()
             {
                 Orientation = Orientation.Horizontal,
@@ -174,6 +230,7 @@ namespace SaveDataWpf
                 Background = Brushes.Transparent,
                 BorderBrush = Brushes.Transparent,
                 Margin = new Thickness(0, 0, 10, 0),
+                Style = style,
             });
             editBtn.Click += (sender, e) =>
             {
@@ -187,6 +244,7 @@ namespace SaveDataWpf
                 Background = Brushes.Transparent,
                 BorderBrush = Brushes.Transparent,
                 Margin = new Thickness(0, 0, 10, 0),
+                Style = style,
             });
             deleteBtn.Click += (sender, e) =>
             {
@@ -209,6 +267,7 @@ namespace SaveDataWpf
                 Background = Brushes.Transparent,
                 BorderBrush = Brushes.Transparent,
                 Margin = new Thickness(0, 0, 10, 0),
+                Style = style,
             });
             encryptBtn.Click += async (sender, e) =>
             {
@@ -242,6 +301,7 @@ namespace SaveDataWpf
                 Background = Brushes.Transparent,
                 BorderBrush = Brushes.Transparent,
                 Margin = new Thickness(0, 0, 10, 0),
+                Style = style,
             });
             copyBtn.Click += (sender, e) => Clipboard.SetText(pair.Value.Content);
 
