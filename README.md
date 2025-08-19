@@ -1,4 +1,4 @@
 **This is a local encryption supporting data storing application**
 
-<img width="828" height="479" alt="image" src="https://github.com/user-attachments/assets/8bf16c2d-9f53-4613-962b-97d16fb989f7" />
- 
+<img width="828" height="478" alt="image" src="https://github.com/user-attachments/assets/09b5cb4b-4263-4531-9ec5-1497f7511bce" />
+
